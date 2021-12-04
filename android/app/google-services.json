@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "471370563802",
+    "project_id": "proyectofinal-d3873",
+    "storage_bucket": "proyectofinal-d3873.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471370563802:android:c297d66bc98cc036a9a5e3",
+        "android_client_info": {
+          "package_name": "com.universidadtecnologicatucuman.finalcrud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471370563802-jnfjc961a8jh6j5n46e68fcfr4sq2osc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpQEOLRNztkF92A94gWCUV7UcMECndscY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471370563802-jnfjc961a8jh6j5n46e68fcfr4sq2osc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
