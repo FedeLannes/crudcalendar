@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crudcalendar/testscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -119,6 +120,16 @@ class LoadDataFromFireStoreState extends State<LoadDataFromFireStore> {
     });
   }
 
+  void _addNewAppointment(BuildContext context) async {
+    await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MeetingScreen(Meeting(
+            eventName: '',
+          )),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     isInitialLoaded = true;
@@ -134,14 +145,16 @@ class LoadDataFromFireStoreState extends State<LoadDataFromFireStore> {
           }).toList(),
           onSelected: (String value) {
             if (value == 'Add') {
-              fireStoreReference
+              _addNewAppointment(context);
+
+              /*fireStoreReference
                   .collection("CalendarAppointmentCollection")
                   .doc("1")
                   .set({
                 'Subject': 'Mastering Flutter',
                 'StartTime': '07/04/2020 08:00:00',
                 'EndTime': '07/04/2020 09:00:00'
-              });
+              });*/
             } else if (value == "Delete") {
               try {
                 fireStoreReference
@@ -211,34 +224,5 @@ class MeetingDataSource extends CalendarDataSource {
   @override
   Color getColor(int index) {
     return appointments![index].background;
-  }
-}
-
-class Meeting {
-  String? eventName;
-  DateTime? from;
-  DateTime? to;
-  Color? background;
-  bool? isAllDay;
-  String? key;
-
-  Meeting(
-      {this.eventName,
-      this.from,
-      this.to,
-      this.background,
-      this.isAllDay,
-      this.key});
-
-  static Meeting fromFireBaseSnapShotData(dynamic element, Color color) {
-    return Meeting(
-        eventName: element.doc.data()!['Subject'],
-        from: DateFormat('dd/MM/yyyy HH:mm:ss')
-            .parse(element.doc.data()!['StartTime']),
-        to: DateFormat('dd/MM/yyyy HH:mm:ss')
-            .parse(element.doc.data()!['EndTime']),
-        background: color,
-        isAllDay: false,
-        key: element.doc.id);
   }
 }
