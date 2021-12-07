@@ -32,6 +32,8 @@ dependencies:
   firebase_core: 
   cloud_firestore:
   syncfusion_flutter_calendar: 
+  firebase_database:
+  firebase_storage:
 
 
 

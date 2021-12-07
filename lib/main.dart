@@ -1,7 +1,9 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crudcalendar/model/model.dart';
 import 'package:crudcalendar/testscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -28,6 +30,8 @@ class LoadDataFromFireStore extends StatefulWidget {
   @override
   LoadDataFromFireStoreState createState() => LoadDataFromFireStoreState();
 }
+
+final meetingReference = FirebaseDatabase.instance.reference().child('meeting');
 
 class LoadDataFromFireStoreState extends State<LoadDataFromFireStore> {
   List<Color> _colorCollection = <Color>[];
@@ -124,9 +128,7 @@ class LoadDataFromFireStoreState extends State<LoadDataFromFireStore> {
     await Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => MeetingScreen(Meeting(
-            eventName: '',
-          )),
+          builder: (context) => MeetingScreen(Meeting(eventName: '', key: '')),
         ));
   }
 
@@ -174,7 +176,7 @@ class LoadDataFromFireStoreState extends State<LoadDataFromFireStore> {
         )),
         body: SfCalendar(
           view: CalendarView.month,
-          initialDisplayDate: DateTime(2020, 4, 5, 9, 0, 0),
+          initialDisplayDate: DateTime(2021, 12, 06, 0, 0, 0),
           dataSource: events,
           monthViewSettings: MonthViewSettings(
             showAgenda: true,
